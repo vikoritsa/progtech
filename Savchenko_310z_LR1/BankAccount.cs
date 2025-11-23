@@ -15,8 +15,7 @@ public class BankAccount
         s_accountNumberSeed++;
 
     }
-
-
+    private List<Transaction> _allTransactions = new List<Transaction>();
     public void MakeDeposit(decimal amount, DateTime date, string note)
     {
     }
