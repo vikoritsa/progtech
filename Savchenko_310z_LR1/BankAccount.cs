@@ -20,13 +20,15 @@ public class BankAccount
     }
 
 
-    public BankAccount(string name)
+    public BankAccount(string name, decimal initialBalance)
     {
-        Owner = name;
         Number = s_accountNumberSeed.ToString();
         s_accountNumberSeed++;
 
+        Owner = name;
+        MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
     }
+
     private List<Transaction> _allTransactions = new List<Transaction>();
     public void MakeDeposit(decimal amount, DateTime date, string note)
     {
