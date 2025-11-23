@@ -5,6 +5,7 @@ namespace Classes;
 public class BankAccount
 {
 
+
     private static int s_accountNumberSeed = 1234567890;
     public string Number { get; }
     public string Owner { get; set; }
@@ -22,7 +23,23 @@ public class BankAccount
         }
     }
     public virtual void PerformMonthEndTransactions() { }
-    public BankAccount(string name, decimal initialBalance) { }
+
+    private readonly decimal _minimumBalance;
+
+    public BankAccount(string name, decimal initialBalance) : this(name, initialBalance, 0) { }
+
+    public BankAccount(string name, decimal initialBalance, decimal minimumBalance)
+    {
+        Number = s_accountNumberSeed.ToString();
+        s_accountNumberSeed++;
+
+        Owner = name;
+        _minimumBalance = minimumBalance;
+        if (initialBalance > 0)
+            MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
+    }
+
+
     //public BankAccount(string name, decimal initialBalance)
     //{
     //    Number = s_accountNumberSeed.ToString();
