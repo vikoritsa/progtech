@@ -4,6 +4,7 @@ namespace Classes;
 
 public class BankAccount
 {
+
     private static int s_accountNumberSeed = 1234567890;
     public string Number { get; }
     public string Owner { get; set; }
@@ -20,16 +21,16 @@ public class BankAccount
             return balance;
         }
     }
+    public virtual void PerformMonthEndTransactions() { }
+    public BankAccount(string name, decimal initialBalance) { }
+    //public BankAccount(string name, decimal initialBalance)
+    //{
+    //    Number = s_accountNumberSeed.ToString();
+    //    s_accountNumberSeed++;
 
-
-    public BankAccount(string name, decimal initialBalance)
-    {
-        Number = s_accountNumberSeed.ToString();
-        s_accountNumberSeed++;
-
-        Owner = name;
-        MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
-    }
+    //    Owner = name;
+    //    MakeDeposit(initialBalance, DateTime.Now, "Initial balance");
+    //}
 
     private List<Transaction> _allTransactions = new List<Transaction>();
     public void MakeDeposit(decimal amount, DateTime date, string note)
